@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Primary Meta Tags -->
+    <title>Bitnify – Free HTML & CSS Button Generator</title>
+    <meta name="title" content="Bitnify Free HTML & CSS Button Generator">
+    <meta name="description" content="Bitnify helps you generate modern, responsive buttons using clean HTML and CSS. Customize colors, hover effects, and styles with live preview and copy instantly.">
+
+    <meta name="keywords" content="button generator, css button generator, html css buttons, cta button generator, ui button tool, web developer tools">
+    <meta name="author" content="Bitnify">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bitnify – Free Button Generator for Developers">
+    <meta property="og:description" content="Create beautiful HTML & CSS buttons in seconds. Live preview, templates, and easy copy-paste.">
+    <meta property="og:site_name" content="Bitnify">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bitnify – HTML & CSS Button Generator">
+    <meta name="twitter:description" content="Design modern buttons with clean HTML & CSS. Fast, free, and developer-friendly.">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitnify - Instant Button Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #btnif{
+            margin-top: -17px;
+        }
+
+        :root {
+            --bg-primary: #f5f5f7;
+            --bg-secondary: #ffffff;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --border-color: #d2d2d7;
+            --accent: #0071e3;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --code-bg: #f6f8fa;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1d1d1f;
+            --bg-secondary: #2d2d2f;
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --border-color: #424245;
+            --accent: #0a84ff;
+            --shadow: rgba(0, 0, 0, 0.5);
+            --code-bg: #1c1c1e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--accent), #00c6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        input[type="color"] {
+            width: 100%;
+            height: 50px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            background: var(--bg-primary);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--border-color);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            border: none;
+        }
+
+        .slider-value {
+            display: inline-block;
+            margin-left: 10px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .preview-section {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #previewButton {
+            padding: 12px 32px;
+            font-size: 16px;
+            background: #0071e3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .templates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .template-btn {
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .template-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--shadow);
+        }
+
+        .code-section {
+            margin-top: 30px;
+        }
+
+        .code-block {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .code-block h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .code-container {
+            background: var(--code-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-container pre {
+            margin: 0;
+            color: var(--text-primary);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 16px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            opacity: 0.8;
+        }
+
+        .copy-btn.copied {
+            background: #34c759;
+        }
+
+        .ad-container {
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 60px;
+            text-align: center;
+            margin: 30px 0;
+            color: var(--text-secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .prompt-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .generate-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .theme-toggle {
+                position: static;
+                margin: 20px auto;
+                display: block;
+                width: fit-content;
+            }
+
+            .templates {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 id="btnif">Bitnify</h1>
+            <p class="subtitle">Instant Button Generator for Lazy Developers With Code! </p>
+            <button class="theme-toggle" id="themeToggle">🌙 Dark Mode</button>
+        </header>
+
+        <div class="main-grid">
+            <div class="card">
+                <h2>Customize Button</h2>
+                
+                <div class="prompt-section">
+                    <label for="promptInput">Quick Generate (Optional)</label>
+                    <input type="text" id="promptInput" placeholder='Try: "modern blue CTA button" or "minimal dark button"'>
+                    <button class="generate-btn" id="generateBtn">Generate from Prompt</button>
+                </div>
+
+                <div class="control-group">
+                    <label for="buttonText">Button Text</label>
+                    <input type="text" id="buttonText" value="Click Me">
+                </div>
+
+                <div class="control-group">
+                    <label for="bgColor">Background Color</label>
+                    <input type="color" id="bgColor" value="#0071e3">
+                </div>
+
+                <div class="control-group">
+                    <label for="textColor">Text Color</label>
+                    <input type="color" id="textColor" value="#ffffff">
+                </div>
+
+                <div class="control-group">
+                    <label for="fontFamily">Font Family</label>
+                    <select id="fontFamily">
+                        <option value="inherit">System Default</option>
+                        <option value="Arial, sans-serif">Arial</option>
+                        <option value="'Courier New', monospace">Courier New</option>
+                        <option value="Georgia, serif">Georgia</option>
+                        <option value="'Trebuchet MS', sans-serif">Trebuchet MS</option>
+                        <option value="Verdana, sans-serif">Verdana</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Font Size: <span class="slider-value" id="fontSizeValue">16px</span></label>
+                    <input type="range" id="fontSize" min="10" max="32" value="16">
+                </div>
+
+                <div class="control-group">
+                    <label>Padding: <span class="slider-value" id="paddingValue">12px 32px</span></label>
+                    <input type="range" id="padding" min="5" max="40" value="12">
+                </div>
+
+                <div class="control-group">
+                    <label>Border Radius: <span class="slider-value" id="borderRadiusValue">8px</span></label>
+                    <input type="range" id="borderRadius" min="0" max="50" value="8">
+                </div>
+
+                <div class="control-group">
+                    <label>Border Width: <span class="slider-value" id="borderWidthValue">0px</span></label>
+                    <input type="range" id="borderWidth" min="0" max="10" value="0">
+                </div>
+
+                <div class="control-group">
+                    <label for="borderColor">Border Color</label>
+                    <input type="color" id="borderColor" value="#000000">
+                </div>
+
+                <div class="control-group">
+                    <label for="hoverEffect">Hover Effect</label>
+                    <select id="hoverEffect">
+                        <option value="darken">Darken</option>
+                        <option value="lighten">Lighten</option>
+                        <option value="glow">Glow</option>
+                        <option value="scale">Scale</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="transitionSpeed">Transition Speed</label>
+                    <select id="transitionSpeed">
+                        <option value="0.15s">Fast (0.15s)</option>
+                        <option value="0.3s" selected>Normal (0.3s)</option>
+                        <option value="0.5s">Slow (0.5s)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Live Preview</h2>
+                <div class="preview-section">
+                    <button id="previewButton">Click Me</button>
+                </div>
+
+                <h2 style="margin-top: 30px;">Templates</h2>
+                <div class="templates">
+                    <button class="template-btn" data-template="primary">Primary</button>
+                    <button class="template-btn" data-template="secondary">Secondary</button>
+                    <button class="template-btn" data-template="danger">Danger</button>
+                    <button class="template-btn" data-template="ghost">Ghost</button>
+                    <button class="template-btn" data-template="neon">Neon</button>
+                    <button class="template-btn" data-template="minimal">Minimal</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card code-section">
+            <h2>Generated Code</h2>
+            
+            <div class="code-block">
+                <h3>HTML</h3>
+                <div class="code-container">
+                    <button class="copy-btn" data-copy="html">Copy</button>
+                    <pre id="htmlCode"></pre>
+                </div>
+            </div>
+
+            <div class="code-block">
+                <h3>CSS</h3>
+                <div class="code-container">
+                    <button class="copy-btn" data-copy="css">Copy</button>
+                    <pre id="cssCode"></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-container">
+            <p>[ Advertisement Space ]</p>
+            <p style="font-size: 0.85rem; margin-top: 10px;">Your ad could be here</p>
+        </div>
+
+        <footer>
+            Free button generator for developers. No tracking. No promises.
+        </footer>
+    </div>
+
+    <script>
+        const buttonText = document.getElementById('buttonText');
+        const bgColor = document.getElementById('bgColor');
+        const textColor = document.getElementById('textColor');
+        const fontFamily = document.getElementById('fontFamily');
+        const fontSize = document.getElementById('fontSize');
+        const padding = document.getElementById('padding');
+        const borderRadius = document.getElementById('borderRadius');
+        const borderWidth = document.getElementById('borderWidth');
+        const borderColor = document.getElementById('borderColor');
+        const hoverEffect = document.getElementById('hoverEffect');
+        const transitionSpeed = document.getElementById('transitionSpeed');
+        const previewButton = document.getElementById('previewButton');
+        const htmlCode = document.getElementById('htmlCode');
+        const cssCode = document.getElementById('cssCode');
+        const themeToggle = document.getElementById('themeToggle');
+        const promptInput = document.getElementById('promptInput');
+        const generateBtn = document.getElementById('generateBtn');
+
+        let currentTheme = 'light';
+
+        const templates = {
+            primary: {
+                bg: '#0071e3',
+                text: '#ffffff',
+                fontSize: 16,
+                padding: 12,
+                borderRadius: 8,
+                borderWidth: 0,
+                borderColor: '#000000'
+            },
+            secondary: {
+                bg: '#6e6e73',
+                text: '#ffffff',
+                fontSize: 16,
+                padding: 12,
+                borderRadius: 8,
+                borderWidth: 0,
+                borderColor: '#000000'
+            },
+            danger: {
+                bg: '#ff3b30',
+                text: '#ffffff',
+                fontSize: 16,
+                padding: 12,
+                borderRadius: 8,
+                borderWidth: 0,
+                borderColor: '#000000'
+            },
+            ghost: {
+                bg: 'transparent',
+                text: '#0071e3',
+                fontSize: 16,
+                padding: 12,
+                borderRadius: 8,
+                borderWidth: 2,
+                borderColor: '#0071e3'
+            },
+            neon: {
+                bg: '#000000',
+                text: '#00ff00',
+                fontSize: 18,
+                padding: 15,
+                borderRadius: 0,
+                borderWidth: 2,
+                borderColor: '#00ff00'
+            },
+            minimal: {
+                bg: '#ffffff',
+                text: '#1d1d1f',
+                fontSize: 14,
+                padding: 10,
+                borderRadius: 4,
+                borderWidth: 1,
+                borderColor: '#d2d2d7'
+            }
+        };
+
+        function updatePreview() {
+            const text = buttonText.value;
+            const bg = bgColor.value;
+            const color = textColor.value;
+            const font = fontFamily.value;
+            const size = fontSize.value;
+            const pad = padding.value;
+            const radius = borderRadius.value;
+            const bWidth = borderWidth.value;
+            const bColor = borderColor.value;
+            const transition = transitionSpeed.value;
+
+            previewButton.textContent = text;
+            previewButton.style.backgroundColor = bg;
+            previewButton.style.color = color;
+            previewButton.style.fontFamily = font;
+            previewButton.style.fontSize = size + 'px';
+            previewButton.style.padding = pad + 'px ' + (pad * 2.5) + 'px';
+            previewButton.style.borderRadius = radius + 'px';
+            previewButton.style.border = bWidth > 0 ? bWidth + 'px solid ' + bColor : 'none';
+            previewButton.style.transition = 'all ' + transition;
+
+            document.getElementById('fontSizeValue').textContent = size + 'px';
+            document.getElementById('paddingValue').textContent = pad + 'px ' + (pad * 2.5) + 'px';
+            document.getElementById('borderRadiusValue').textContent = radius + 'px';
+            document.getElementById('borderWidthValue').textContent = bWidth + 'px';
+
+            updateCode();
+            updateHoverEffect();
+        }
+
+        function updateHoverEffect() {
+            const effect = hoverEffect.value;
+            const bg = bgColor.value;
+            
+            previewButton.onmouseenter = () => {
+                switch(effect) {
+                    case 'darken':
+                        previewButton.style.filter = 'brightness(0.85)';
+                        break;
+                    case 'lighten':
+                        previewButton.style.filter = 'brightness(1.15)';
+                        break;
+                    case 'glow':
+                        previewButton.style.boxShadow = '0 0 20px ' + bg;
+                        break;
+                    case 'scale':
+                        previewButton.style.transform = 'scale(1.05)';
+                        break;
+                }
+            };
+
+            previewButton.onmouseleave = () => {
+                previewButton.style.filter = 'none';
+                previewButton.style.boxShadow = 'none';
+                previewButton.style.transform = 'none';
+            };
+        }
+
+        function updateCode() {
+            const text = buttonText.value;
+            const bg = bgColor.value;
+            const color = textColor.value;
+            const font = fontFamily.value;
+            const size = fontSize.value;
+            const pad = padding.value;
+            const radius = borderRadius.value;
+            const bWidth = borderWidth.value;
+            const bColor = borderColor.value;
+            const transition = transitionSpeed.value;
+            const effect = hoverEffect.value;
+
+            const html = `<button class="custom-btn">${text}</button>`;
+
+            let hoverCSS = '';
+            switch(effect) {
+                case 'darken':
+                    hoverCSS = '  filter: brightness(0.85);';
+                    break;
+                case 'lighten':
+                    hoverCSS = '  filter: brightness(1.15);';
+                    break;
+                case 'glow':
+                    hoverCSS = `  box-shadow: 0 0 20px ${bg};`;
+                    break;
+                case 'scale':
+                    hoverCSS = '  transform: scale(1.05);';
+                    break;
+            }
+
+            const css = `.custom-btn {
+  padding: ${pad}px ${pad * 2.5}px;
+  font-size: ${size}px;
+  background: ${bg};
+  color: ${color};
+  ${font !== 'inherit' ? `font-family: ${font};\n  ` : ''}border: ${bWidth > 0 ? bWidth + 'px solid ' + bColor : 'none'};
+  border-radius: ${radius}px;
+  cursor: pointer;
+  transition: all ${transition};
+}
+
+.custom-btn:hover {
+${hoverCSS}
+}`;
+
+            htmlCode.textContent = html;
+            cssCode.textContent = css;
+        }
+
+        function applyTemplate(templateName) {
+            const template = templates[templateName];
+            bgColor.value = template.bg;
+            textColor.value = template.text;
+            fontSize.value = template.fontSize;
+            padding.value = template.padding;
+            borderRadius.value = template.borderRadius;
+            borderWidth.value = template.borderWidth;
+            borderColor.value = template.borderColor;
+            updatePreview();
+        }
+
+        function generateFromPrompt() {
+            const prompt = promptInput.value.toLowerCase();
+            
+            if (prompt.includes('blue') || prompt.includes('primary') || prompt.includes('cta')) {
+                bgColor.value = '#0071e3';
+                textColor.value = '#ffffff';
+            } else if (prompt.includes('red') || prompt.includes('danger') || prompt.includes('delete')) {
+                bgColor.value = '#ff3b30';
+                textColor.value = '#ffffff';
+            } else if (prompt.includes('green') || prompt.includes('success')) {
+                bgColor.value = '#34c759';
+                textColor.value = '#ffffff';
+            } else if (prompt.includes('dark') || prompt.includes('black')) {
+                bgColor.value = '#1d1d1f';
+                textColor.value = '#ffffff';
+            } else if (prompt.includes('light') || prompt.includes('white')) {
+                bgColor.value = '#ffffff';
+                textColor.value = '#1d1d1f';
+                borderWidth.value = 1;
+                borderColor.value = '#d2d2d7';
+            } else if (prompt.includes('neon') || prompt.includes('glow')) {
+                bgColor.value = '#000000';
+                textColor.value = '#00ff00';
+                borderWidth.value = 2;
+                borderColor.value = '#00ff00';
+                hoverEffect.value = 'glow';
+            }
+
+            if (prompt.includes('rounded') || prompt.includes('smooth')) {
+                borderRadius.value = 25;
+            } else if (prompt.includes('square') || prompt.includes('sharp')) {
+                borderRadius.value = 0;
+            }
+
+            if (prompt.includes('large') || prompt.includes('big')) {
+                fontSize.value = 20;
+                padding.value = 16;
+            } else if (prompt.includes('small') || prompt.includes('minimal')) {
+                fontSize.value = 14;
+                padding.value = 8;
+            }
+
+            if (prompt.includes('outline') || prompt.includes('ghost')) {
+                const currentBg = bgColor.value;
+                textColor.value = currentBg;
+                bgColor.value = 'transparent';
+                borderWidth.value = 2;
+                borderColor.value = currentBg;
+            }
+
+            updatePreview();
+        }
+
+        buttonText.addEventListener('input', updatePreview);
+        bgColor.addEventListener('input', updatePreview);
+        textColor.addEventListener('input', updatePreview);
+        fontFamily.addEventListener('change', updatePreview);
+        fontSize.addEventListener('input', updatePreview);
+        padding.addEventListener('input', updatePreview);
+        borderRadius.addEventListener('input', updatePreview);
+        borderWidth.addEventListener('input', updatePreview);
+        borderColor.addEventListener('input', updatePreview);
+        hoverEffect.addEventListener('change', updatePreview);
+        transitionSpeed.addEventListener('change', updatePreview);
+
+        document.querySelectorAll('.template-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                applyTemplate(btn.dataset.template);
+            });
+        });
+
+        generateBtn.addEventListener('click', generateFromPrompt);
+
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const type = btn.dataset.copy;
+                const code = type === 'html' ? htmlCode.textContent : cssCode.textContent;
+                navigator.clipboard.writeText(code);
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        });
+
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.dataset.theme = currentTheme;
+            themeToggle.textContent = currentTheme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode';
+        });
+
+        updatePreview();
+    </script>
+</body>
+</html>
